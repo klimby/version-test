@@ -147,7 +147,7 @@ bump:
     start: 0
     end: 5
     regexp:
-      - ^!\[Version:.*$
+      - ^!\[Version.*$
   - file: bump/change-line.txt
     start: 3
     end: 4
