@@ -23,6 +23,11 @@ backupChanged: false
 #     runInDry: true
 # In this example, will be run command: echo before commit --version=1.2.3
 before:
+  - cmd: [ "echo", "before commit" ]
+  - cmd: [ "make", "task-before" ]
+    versionFlag: "VERSION"
+    breakOnError: true
+    runInDry: true
 
 # Run commands after commit.
 # All commands will be executed from main directory (where version is located).
@@ -39,6 +44,11 @@ before:
 # 	  runInDry: true
 # In this example, will be run command: echo after commit --version=1.2.3
 after:
+  - cmd: [ "echo", "after commit" ]
+  - cmd: [ "make", "task-after" ]
+    versionFlag: "VERSION"
+    breakOnError: true
+    runInDry: true
 
 # Git settings.
 git:
@@ -131,8 +141,13 @@ changelog:
 # All strings from file, from 0 to 100, that match regexp will be replaced with new version.
 #
 bump:
+  - file: composer.json
+  - file: package.json
   - file: README.md
     start: 0
     end: 5
     regexp:
       - ^!\[Version:.*$
+  - file: bump/change-line.txt
+    start: 3
+    end: 4

@@ -27,3 +27,8 @@ major: ## Major version
 task-before: ## Test task before VERSION variable
 	$(eval V := $(or $(VERSION),'unknown'))
 	@echo "Run task before. Get parameter VERSION=$(V)"
+
+.PHONY: task-after
+task-after: ## Test task after VERSION variable
+	$(eval V := $(or $(VERSION),'unknown'))
+	@echo "Run task after. Get parameter VERSION=$(V)"

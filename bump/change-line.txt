@@ -1,3 +1,5 @@
 Test bump file by line
 This string will not be change 0.0.0
 This string will be change 0.0.0
+This string will be change 0.0.0
+This string will not be change 0.0.0
