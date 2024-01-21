@@ -1,6 +1,6 @@
 Line 0. Test bump file by line.
 Line 1. This string will not be change 0.0.0.
 Line 2. This string will not be change 0.0.0.
-Line 3. This string will be change 0.1.0.
-Line 4. This string will be change 0.1.0.
+Line 3. This string will be change 1.0.0.
+Line 4. This string will be change 1.0.0.
 Line 5. This string will not be change 0.0.0.

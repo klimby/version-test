@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [Conventional CommitsFromLast](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## 1.0.0 (2024-01-21)
+
+### Code Refactoring
+
+* **scope:** test refactor comment ([212946e](https://github.com/klimby/version-test/commit/212946e03f8199aaa67d67969c0d51b34410ef4e))
+    * body with issue [2](https://github.com/klimby/version-test/issues/2)
+
+### Reverts
+
+* **scope:** test revert comment ([8a4efd2](https://github.com/klimby/version-test/commit/8a4efd25af5f90c81f3062fc43ba53d9b19bd2ce))
+
 ## 0.1.0 (2024-01-21)
 
 ### Breaking changes
