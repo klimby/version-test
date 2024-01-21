@@ -151,3 +151,8 @@ bump:
   - file: bump/change-line.txt
     start: 3
     end: 4
+  - file: bump/change-line-regexp.txt
+    start: 3
+    end: 4
+    regexp:
+      - "FOO:"
