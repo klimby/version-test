@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [Conventional CommitsFromLast](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## 0.1.0 (2024-01-21)
+
+### Breaking changes
+
+* **scope:** test feat breaking changes ([5de5748](https://github.com/klimby/version-test/commit/5de5748fc324eb02eadfe9a166124ae387e96db2))
+    * BREAKING CHANGE: test breaking changes
+    * Closes [1](https://github.com/klimby/version-test/issues/1)
+
 ## 0.0.1 (2024-01-21)
 
 ### Features
