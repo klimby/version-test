@@ -11,6 +11,10 @@ help: ## Show this help
 generate-config: ## Patch version
 	./version generate --config-file
 
+.PHONY: patch-prepare
+patch-prepare: ## Prepare patch version
+	./version next --patch --prepare
+
 .PHONY: patch
 patch: ## Patch version
 	./version next --patch
