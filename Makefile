@@ -7,6 +7,10 @@ SHELL = /bin/sh
 help: ## Show this help
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
+.PHONY: generate-config
+generate-config: ## Patch version
+	./version generate --config-file
+
 .PHONY: patch
 patch: ## Patch version
 	./version next --patch
