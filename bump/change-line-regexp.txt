@@ -1,6 +1,6 @@
 Line 0. Test bump file by line ang regexp.
 Line 1. This string will not be change 0.0.0. (not match regexp, not match line)
 Line 2. FOO: This string will not be change 0.0.0. (match regexp, but not match line)
-Line 3. FOO: This string will be change 1.0.2. (match regexp, match line)
+Line 3. FOO: This string will be change 1.0.3. (match regexp, match line)
 Line 4. BAR: This string will be change 0.1.0. (match not regexp, match line)
 Line 5. This string will not be change 0.0.0. (not match regexp, not match line)

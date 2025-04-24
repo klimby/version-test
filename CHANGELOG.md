@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [Conventional CommitsFromLast](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## 1.0.3 (2025-04-24)
+
+### Features
+
+* **scope:** Description 2 ([9b3d5f1](https://github.com/klimby/version-test/commit/9b3d5f15b4c913e4584ecd63480de53a510db516))
+    * - one
+    * - two
+    * Closes: [111](https://github.com/klimby/version-test/issues/111)
+* **scope:** Description ([66fcd34](https://github.com/klimby/version-test/commit/66fcd3421cab54bbeb0d8369a74f8ea42a77d0b0))
+    * - one
+    * - two
+    * Closes: [111](https://github.com/klimby/version-test/issues/111)
+
 ## 1.0.2 (2025-04-24)
 
 ### Features
