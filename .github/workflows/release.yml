@@ -27,20 +27,24 @@ jobs:
           PREV_TAG=$(git tag --sort=-creatordate | sed -n '2p' || true)
           echo "prev=$PREV_TAG" >> "$GITHUB_OUTPUT"
 
-      - name: Build changelog
+      - name: Build changelog (multiline Conventional Commits)
         id: changelog
+        env:
+          CUR_TAG:  ${{ steps.tags.outputs.tag }}
+          PREV_TAG: ${{ steps.tags.outputs.prev }}
         run: |
-          echo "text<<CHANGELOG" >> "$GITHUB_OUTPUT"
-
-          if [ -n "${{ steps.tags.outputs.prev }}" ]; then
-            git log --pretty=format:'- %s' \
-              "${{ steps.tags.outputs.prev }}..${{ steps.tags.outputs.tag }}" >> "$GITHUB_OUTPUT"
-          else
-            git log --pretty=format:'- %s' "${{ steps.tags.outputs.tag }}" >> "$GITHUB_OUTPUT"
-          fi
-
-          echo "" >> "$GITHUB_OUTPUT"   # пустая строка перед завершающей меткой
-          echo "CHANGELOG" >> "$GITHUB_OUTPUT"
+          RANGE="${PREV_TAG:+$PREV_TAG..}$CUR_TAG"
+          
+          {                                     # открываем многострочный output
+            echo "text<<CHANGELOG"
+          
+            # %s = subject, %n = \n, %b = body (полностью, без обрезки)
+            git log --pretty=format:'- %s%n%b%n' --reverse "$RANGE" |
+            # все строки, что не начинаются с «- », получат два пробела — отступ от маркера
+            sed -E 's/^([^ -].*)/  \1/'
+          
+            echo "CHANGELOG"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
