@@ -1,0 +1,57 @@
+name: Release
+
+# 🚀Срабатывает только когда в репозиторий пушится новый тэг-версия.
+#    Предполагается, что тэги создаются от коммитов ветки main
+#    (обычно git tag v1.2.3 && git push origin main --follow-tags).
+
+on:
+  push:
+    tags:
+      - 'v*'            # при необходимости ужесточите шаблон (например v[0-9]*.[0-9]*.[0-9]*)
+
+jobs:
+  test-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1 — код
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0      # нужен полный git history, чтобы увидеть предыдущий тэг
+
+      # 3 — вычисляем текущий и предыдущий тэг
+      - name: Detect tags
+        id: tags
+        run: |
+          # текущий тэг приходит в GITHUB_REF вида refs/tags/v1.2.3
+          TAG_NAME="${GITHUB_REF#refs/tags/}"
+          echo "tag=$TAG_NAME"   >>"$GITHUB_OUTPUT"
+
+          # предыдущий тэг (⟂ если его нет — вывод будет пустым)
+          PREV_TAG="$(git describe --tags --abbrev=0 "$(git rev-list --tags --skip=1 --max-count=1)")"
+          echo "prev=$PREV_TAG"  >>"$GITHUB_OUTPUT"
+
+      # 4 — генерируем список коммитов между тэгами
+      - name: Build changelog
+        id: changelog
+        run: |
+          {
+            echo 'text<<EOF'
+            if [ -n "${{ steps.tags.outputs.prev }}" ]; then
+              git log --pretty=format:'- %s' "${{ steps.tags.outputs.prev }}..${{ steps.tags.outputs.tag }}"
+            else
+              git log --pretty=format:'- %s' "${{ steps.tags.outputs.tag }}"
+            fi
+            echo 'EOF'
+          } >>"$GITHUB_OUTPUT"
+
+      # 5 — создаём релиз
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name:  ${{ steps.tags.outputs.tag }}
+          name:      ${{ steps.tags.outputs.tag }}           # имя релиза = тэг
+          body:      ${{ steps.changelog.outputs.text }}     # описание = список коммитов
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

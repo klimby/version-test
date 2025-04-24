@@ -11,6 +11,13 @@ help: ## Show this help
 generate-config: ## Patch version
 	./version generate --config-file
 
+.PHONY: pull-version
+pull-version: ## Pull version from docker hub
+	@curl -o version https://raw.githubusercontent.com/klimby/version/master/bin/version
+	@sudo chmod +x ./version
+	@echo "Version pulled"
+	@./version --version
+
 .PHONY: patch-prepare
 patch-prepare: ## Prepare patch version
 	./version next --patch --prepare
