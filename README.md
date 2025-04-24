@@ -14,3 +14,6 @@ wget https://raw.githubusercontent.com/klimby/version/master/bin/version -O vers
 
 sudo chmod +x ./version
 ```
+
+
+dddd
